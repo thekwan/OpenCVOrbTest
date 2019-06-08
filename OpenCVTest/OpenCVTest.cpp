@@ -4,14 +4,24 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
+
+	if( argc < 3 ) {
+		printf("Usage: orb [image 1] [image 2]\n");
+		return 0;
+	}
+
+	string file1(argv[1]);
+	string file2(argv[2]);
+
 	cv::Mat srcImage1, srcImage2;
 
 	cout << "OpenCV Version : " << CV_VERSION << std::endl;
-	cv::namedWindow("EXAMPLE01", cv::WindowFlags::WINDOW_AUTOSIZE);
-	srcImage1 = cv::imread("capture3.png", cv::IMREAD_UNCHANGED);
-	srcImage2 = cv::imread("capture4.png", cv::IMREAD_UNCHANGED);
+	//cv::namedWindow("EXAMPLE01", cv::WindowFlags::WINDOW_AUTOSIZE);
+	cv::namedWindow("EXAMPLE01", cv::WINDOW_NORMAL);
+	srcImage1 = cv::imread(file1, cv::IMREAD_UNCHANGED);
+	srcImage2 = cv::imread(file2, cv::IMREAD_UNCHANGED);
 
 	cv::resize(srcImage1, srcImage1, cv::Size(srcImage1.cols / 2, srcImage1.rows / 2));
 	cv::resize(srcImage2, srcImage2, cv::Size(srcImage2.cols / 2, srcImage2.rows / 2));
